@@ -11,30 +11,24 @@ import {
   Phone,
   MapPin,
   Linkedin,
-  Download,
-  ArrowRight,
   ArrowUpRight,
   Github,
-  Briefcase,
   Calendar,
   Zap,
   Wrench,
-  Layers,
   Code2,
   Users,
-  Lightbulb,
-  Target,
   Sparkles,
-  Building2,
   Award,
   Send,
+  ChevronsDown,
+  ChevronsUp,
+  Asterisk,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Nav } from "@/components/portfolio/Nav";
 import { Reveal } from "@/components/portfolio/Reveal";
-import { Counter } from "@/components/portfolio/Counter";
 import profileImg from "@/assets/profile.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
 
@@ -52,136 +46,108 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-const highlights = [
-  { icon: Cpu, label: "Embedded Systems", desc: "Firmware, microcontrollers, real-time control." },
-  { icon: Wifi, label: "IoT Solutions", desc: "Connected devices, sensor networks, cloud telemetry." },
-  { icon: Bot, label: "Robotics", desc: "Sensing, actuation, autonomous behavior." },
-  { icon: Microscope, label: "VLSI Physical Design", desc: "Floorplan, place & route, timing closure." },
-  { icon: CircuitBoard, label: "DFT", desc: "Scan insertion, ATPG, testability flows." },
-  { icon: GraduationCap, label: "Engineering Mentorship", desc: "Workshops, project guidance, training." },
+/* ───────────────── DATA ───────────────── */
+
+const marqueeWords = ["EMBEDDED SYSTEMS", "IOT", "ROBOTICS", "VLSI", "ARDUINO", "ESP32", "PCB DESIGN", "AUTOMATION"];
+
+const skills = [
+  { name: "Arduino", level: 95 },
+  { name: "ESP32", level: 90 },
+  { name: "IoT", level: 92 },
+  { name: "PCB Design", level: 82 },
+];
+
+const services = [
+  { num: "01", title: "Embedded Dev", short: "Firmware" },
+  { num: "02", title: "IoT Systems", short: "Connected" },
+  { num: "03", title: "PCB Design", short: "Schematic" },
+  { num: "04", title: "Robotics", short: "Autonomous" },
+  { num: "05", title: "VLSI / DFT", short: "Physical Design" },
+  { num: "06", title: "Mentorship", short: "Workshops" },
 ];
 
 const experiences = [
   {
     role: "Technical Trainer & Developer",
-    org: "CircuitoClaro Solutions Pvt. Ltd.",
-    period: "Jan 2026 – Present",
+    org: "CircuitoClaro Solutions",
+    period: "Jan 2026 — Present",
     type: "Full-time",
-    bullets: [
-      "Conducting hands-on workshops on Arduino, IoT, Robotics and Electronics.",
-      "Developing embedded and automation projects.",
-      "Training students in circuit design, programming and prototyping.",
-      "Working with Atal Tinkering Labs in schools.",
-    ],
+    desc: "Conducting hands-on workshops on Arduino, IoT and Robotics. Developing embedded and automation projects with Atal Tinkering Labs.",
+    highlight: true,
   },
   {
     role: "IEEE Student Branch Member",
-    org: "Prof. Ram Meghe Institute of Technology and Research",
-    period: "Jan 2026 – Present",
+    org: "PRMIT&R, Amravati",
+    period: "Jan 2026 — Present",
     type: "Member",
-    bullets: [
-      "Participating in technical events and workshops.",
-      "Contributing to student engagement and technical awareness programs.",
-    ],
+    desc: "Participating in technical events and contributing to student engagement and technical awareness programs.",
   },
   {
     role: "Summer Intern",
     org: "MDB Electrosoft",
-    period: "May 2024 – Oct 2024",
+    period: "May 2024 — Oct 2024",
     type: "Internship",
-    bullets: [
-      "Worked on electronics systems and embedded technologies.",
-      "Assisted in PCB design, testing and prototyping.",
-      "Developed industry-oriented practical skills.",
-    ],
+    desc: "Worked on electronics systems and embedded technologies. Assisted in PCB design, testing and prototyping.",
+  },
+];
+
+const education = [
+  {
+    period: "2025 — Present",
+    org: "PRMIT&R",
+    title: "B.Tech in ENTC",
+    desc: "3rd Year — Electronics & Telecommunication Engineering, focused on embedded systems and VLSI fundamentals.",
   },
   {
-    role: "Freelance Project Developer",
-    org: "Independent",
-    period: "2026 – Present",
-    type: "Freelance",
-    bullets: [
-      "Guided engineering and diploma students.",
-      "Assisted with hardware design and programming.",
-      "Supported IoT, automation, embedded and software projects.",
-    ],
+    period: "2022 — 2025",
+    org: "Dr. PD Polytechnic",
+    title: "Diploma in Electronics",
+    desc: "Completed Diploma in Electronics Engineering with 78%, building strong fundamentals in circuits and hardware.",
   },
-];
-
-const techSkills = [
-  { name: "IoT Development", level: 92 },
-  { name: "Embedded Systems", level: 90 },
-  { name: "Arduino", level: 95 },
-  { name: "ESP32", level: 90 },
-  { name: "PCB Design", level: 82 },
-  { name: "Robotics", level: 80 },
-  { name: "Automation Systems", level: 85 },
-  { name: "VLSI Physical Design", level: 72 },
-  { name: "Design for Testability (DFT)", level: 68 },
-  { name: "Engineering Project Development", level: 90 },
-];
-
-const proSkills = [
-  "Technical Training",
-  "Engineering Mentorship",
-  "Workshop Management",
-  "Team Collaboration",
-  "Project Guidance",
-  "Problem Solving",
-];
-
-const services = [
-  { icon: Wrench, title: "Engineering Project Development", desc: "End-to-end design and implementation support for academic and industry-grade projects." },
-  { icon: Wifi, title: "IoT & Embedded Systems", desc: "Smart connected devices, sensor networks, and automation solutions." },
-  { icon: CircuitBoard, title: "PCB Design & Prototyping", desc: "Schematic capture, PCB layout, fabrication-ready files and bring-up." },
-  { icon: Cpu, title: "Arduino & ESP32 Development", desc: "Custom embedded firmware and hardware integration for products." },
-  { icon: Users, title: "Project Mentorship", desc: "1:1 and group guidance for diploma and engineering students." },
-  { icon: Zap, title: "Automation Systems", desc: "Industrial and educational automation built around real-world constraints." },
-  { icon: Code2, title: "Software & IT Projects", desc: "Support for software-based academic projects, from idea to demo." },
+  {
+    period: "Ongoing",
+    org: "Self-led",
+    title: "VLSI Physical Design",
+    desc: "Learning floorplanning, place & route, timing closure and DFT methodologies through industry-aligned coursework.",
+  },
 ];
 
 const projects = [
   {
-    title: "IoT-Based Fogger System for Dairy Farm",
-    tags: ["Arduino", "Sensors", "IoT", "Automation"],
-    desc: "Automated environmental control for dairy farms — monitors temperature and humidity, and activates foggers to maintain ideal conditions for livestock comfort.",
+    id: "01",
+    name: "Fogger",
+    meta: "(Duration: 14 Days)",
+    tags: ["Arduino", "Sensors", "IoT"],
     img: projectFogger,
   },
   {
-    title: "Smart Energy Monitoring System",
-    tags: ["ESP32", "IoT", "Energy Sensors", "Cloud"],
-    desc: "Real-time monitoring of voltage, current, power and energy consumption with cloud connectivity for remote analysis and dashboarding.",
+    id: "02",
+    name: "Energy Mon",
+    meta: "(Duration: 10 Days)",
+    tags: ["ESP32", "Cloud", "Sensors"],
     img: projectEnergy,
+  },
+  {
+    id: "03",
+    name: "AutoLab",
+    meta: "(Duration: 7 Days)",
+    tags: ["PCB", "Automation"],
+    img: profileImg,
   },
 ];
 
-const stats = [
-  { value: 25, suffix: "+", label: "Workshops Conducted" },
-  { value: 120, suffix: "+", label: "Students Trained" },
-  { value: 15, suffix: "+", label: "Projects Delivered" },
-  { value: 4, suffix: "+", label: "Years Building" },
-];
+/* ───────────────── PAGE ───────────────── */
 
 function Portfolio() {
   return (
     <div id="home" className="relative min-h-screen bg-background text-foreground">
-      {/* Ambient page glows */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 left-1/2 h-[600px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,oklch(0.65_0.21_256/0.18),transparent_60%)] blur-3xl" />
-        <div className="absolute top-[40%] -right-32 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,oklch(0.78_0.14_210/0.14),transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-0 -left-32 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,oklch(0.55_0.18_280/0.12),transparent_70%)] blur-3xl" />
-      </div>
-
       <Nav />
-
       <Hero />
+      <Marquee />
       <About />
-      <Education />
-      <Experience />
-      <Skills />
       <Services />
+      <Journey />
       <Projects />
-      <Achievements />
       <Contact />
       <Footer />
     </div>
@@ -191,333 +157,212 @@ function Portfolio() {
 /* ───────────────── HERO ───────────────── */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pb-20 pt-32 sm:pt-40">
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <img
-          src={heroBg}
-          alt=""
-          width={1920}
-          height={1080}
-          className="h-full w-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
-        <div className="absolute inset-0 grid-bg opacity-40" />
+    <section className="relative isolate overflow-hidden bg-cream pb-12 pt-28 sm:pt-32">
+      {/* Decorative squiggles */}
+      <DecoSquiggle className="absolute right-6 top-16 hidden h-32 w-32 text-ink/70 sm:block" />
+      <DecoSquiggle className="absolute left-2 top-1/2 hidden h-20 w-20 -translate-y-1/2 text-ink/60 md:block" />
+      <div aria-hidden className="absolute right-12 top-44 hidden h-16 w-16 rotate-12 text-ink/80 lg:block">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-full w-full">
+          <path d="M2 12 Q8 4 14 12 T22 12" />
+        </svg>
       </div>
+      <div aria-hidden className="absolute left-10 top-32 hidden h-0 w-0 border-l-[28px] border-l-transparent border-b-[40px] border-b-lime border-r-[28px] border-r-transparent md:block" />
 
-      {/* Floating particles */}
-      <div aria-hidden className="absolute inset-0 -z-10">
-        {Array.from({ length: 14 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute h-1 w-1 rounded-full bg-primary/70"
-            style={{
-              top: `${(i * 53) % 100}%`,
-              left: `${(i * 37) % 100}%`,
-              boxShadow: "0 0 12px oklch(0.65 0.21 256 / 0.8)",
-              animation: `float ${6 + (i % 5)}s ease-in-out ${i * 0.3}s infinite`,
-              opacity: 0.5 + ((i % 4) * 0.12),
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="mx-auto grid max-w-6xl items-center gap-6 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal>
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              Open to internships & collaborations
-            </div>
-
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              Shravan
-              <br />
-              <span className="text-gradient">Murlidhar Wanve</span>
+          <div className="relative">
+            <h1 className="font-display text-[5.5rem] font-extrabold leading-none tracking-tight text-ink sm:text-[8rem] lg:text-[10rem]">
+              Hey
             </h1>
+            <div className="-mt-1 text-sm font-medium text-ink/60">— It's Shravan</div>
 
-            <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-              Electronics & Telecommunication Engineer · Embedded Systems Developer · IoT Innovator · VLSI Enthusiast
-            </p>
-
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground/90">
-              I build practical engineering solutions across embedded systems, IoT, robotics and VLSI — and help students
-              turn ideas into real-world products through workshops, mentoring and project development.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="group inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3 text-sm font-medium text-background shadow-[var(--shadow-glow)] transition-transform hover:scale-[1.03]"
-              >
-                View Projects
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-5 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/50 hover:text-primary"
-              >
-                Contact Me
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-cyan-accent/60 hover:text-cyan-accent"
-              >
-                <Download className="h-4 w-4" /> Download Resume
-              </a>
-            </div>
-
-            <div className="mt-10 flex items-center gap-6 text-xs uppercase tracking-[0.2em] text-muted-foreground/70">
-              <span>Arduino</span>
-              <span className="h-px w-6 bg-border" />
-              <span>ESP32</span>
-              <span className="h-px w-6 bg-border" />
-              <span>VLSI</span>
-              <span className="h-px w-6 bg-border" />
-              <span>IoT</span>
+            <div className="mt-10 max-w-md">
+              <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
+                Electronics &amp; Embedded
+                <br />
+                Engineer Based
+                <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 text-base text-cream">
+                  <Cpu className="h-3.5 w-3.5 text-lime" /> In India
+                </span>
+              </h2>
             </div>
           </div>
         </Reveal>
 
-        <Reveal delay={150}>
+        <Reveal delay={120}>
           <div className="relative mx-auto w-full max-w-md">
-            {/* Orbiting rings */}
-            <div aria-hidden className="absolute inset-0 -m-8 rounded-full border border-primary/20" />
+            {/* lime blob */}
             <div
               aria-hidden
-              className="absolute inset-0 -m-16 rounded-full border border-cyan-accent/15"
-              style={{ animation: "drift 30s linear infinite" }}
+              className="absolute inset-0 -z-10 rounded-[50%] bg-lime"
+              style={{ clipPath: "ellipse(48% 60% at 50% 55%)" }}
+            />
+            {/* circle ring */}
+            <div aria-hidden className="absolute inset-0 -z-10 rounded-full border-2 border-ink/15" />
+            <img
+              src={profileImg}
+              alt="Shravan Murlidhar Wanve"
+              width={600}
+              height={700}
+              className="relative mx-auto block h-[360px] w-auto object-contain sm:h-[440px]"
             />
 
-            <div className="relative overflow-hidden rounded-3xl border border-border glow-ring">
-              <img
-                src={profileImg}
-                alt="Shravan Murlidhar Wanve"
-                width={768}
-                height={768}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl border border-border/60 bg-background/60 px-4 py-3 backdrop-blur">
-                <div>
-                  <div className="font-display text-sm font-semibold">Shravan Wanve</div>
-                  <div className="text-[11px] text-muted-foreground">B.Tech ENTC · Amravati</div>
-                </div>
-                <Sparkles className="h-5 w-5 text-cyan-accent" />
-              </div>
-            </div>
-
-            {/* Floating badges */}
-            <div
-              className="glass absolute -left-6 top-10 hidden rounded-2xl px-3 py-2 text-xs font-medium sm:block"
-              style={{ animation: "float 7s ease-in-out infinite" }}
-            >
-              <div className="flex items-center gap-2">
-                <Cpu className="h-4 w-4 text-primary" /> Embedded
-              </div>
-            </div>
-            <div
-              className="glass absolute -right-4 bottom-24 hidden rounded-2xl px-3 py-2 text-xs font-medium sm:block"
-              style={{ animation: "float 8s ease-in-out 1s infinite" }}
-            >
-              <div className="flex items-center gap-2">
-                <Wifi className="h-4 w-4 text-cyan-accent" /> IoT
-              </div>
+            {/* Side controls */}
+            <div className="absolute -right-2 top-1/2 hidden -translate-y-1/2 flex-col gap-2 sm:flex">
+              <SocialDot icon={Linkedin} href="https://www.linkedin.com/in/shravan-wanve-44097b312" />
+              <SocialDot icon={Mail} href="mailto:shravanwanve@gmail.com" />
+              <SocialDot icon={Github} href="#" />
             </div>
           </div>
         </Reveal>
       </div>
     </section>
+  );
+}
+
+function SocialDot({ icon: Icon, href }: { icon: any; href: string }) {
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel="noreferrer"
+      className="grid h-9 w-9 place-items-center rounded-full border border-ink/20 bg-paper text-ink transition-all hover:bg-ink hover:text-lime"
+    >
+      <Icon className="h-4 w-4" />
+    </a>
+  );
+}
+
+function DecoSquiggle({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.2">
+      {Array.from({ length: 10 }).map((_, i) => (
+        <line key={i} x1="10" y1={10 + i * 8} x2="90" y2={10 + i * 8} />
+      ))}
+    </svg>
+  );
+}
+
+/* ───────────────── MARQUEE STRIP ───────────────── */
+function Marquee() {
+  const items = [...marqueeWords, ...marqueeWords];
+  return (
+    <div className="relative overflow-hidden border-y border-ink bg-ink py-5">
+      <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap">
+        {items.map((w, i) => (
+          <span key={i} className="flex items-center gap-10">
+            <span className="font-display text-2xl font-extrabold tracking-tight text-cream">{w}</span>
+            <Asterisk className="h-6 w-6 text-lime" />
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
 /* ───────────────── ABOUT ───────────────── */
 function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="01 — About" title="Engineer. Builder. Mentor." />
+    <section id="about" className="relative bg-cream py-20 sm:py-28">
+      <Asterisk aria-hidden className="absolute right-10 top-16 hidden h-14 w-14 text-ink/70 lg:block" />
+      <Asterisk aria-hidden className="absolute left-10 bottom-10 hidden h-14 w-14 text-ink/60 lg:block" />
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
-          <Reveal>
-            <div className="glass-card glass-card-hover rounded-3xl p-8">
-              <Target className="h-8 w-8 text-primary" />
-              <h3 className="mt-4 font-display text-xl font-semibold">My Mission</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Become a skilled engineer and innovator capable of developing impactful products and solutions that solve
-                real-world problems — while sharing what I learn through workshops, mentoring and project development.
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-3">
-                <Pill label="ENTC · B.Tech" />
-                <Pill label="Diploma · 78%" />
-                <Pill label="IEEE Member" />
-                <Pill label="Workshops" />
-              </div>
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <Reveal>
+          <div className="relative mx-auto w-full max-w-sm">
+            <div aria-hidden className="absolute inset-0 -z-10 translate-x-3 translate-y-3 rounded-3xl border-2 border-ink/15" />
+            <div className="overflow-hidden rounded-3xl border border-ink/15 bg-paper">
+              <img src={profileImg} alt="Shravan portrait" className="aspect-square w-full object-cover" />
             </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div>
-              <p className="text-lg leading-relaxed text-foreground/90">
-                I am currently pursuing a <span className="text-foreground font-medium">B.Tech in Electronics and
-                Telecommunication Engineering</span> and previously completed a Diploma in Electronics Engineering. My
-                interests span Embedded Systems, IoT, Robotics, Automation and VLSI Physical Design.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                I enjoy bridging hardware and software — from designing PCBs and writing firmware to deploying connected
-                systems and guiding fellow students through their own engineering journeys.
-              </p>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {highlights.map((h, i) => (
-                  <Reveal key={h.label} delay={i * 60}>
-                    <div className="glass-card glass-card-hover group flex gap-3 rounded-2xl p-4">
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-background">
-                        <h.icon className="h-5 w-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold">{h.label}</div>
-                        <div className="text-xs text-muted-foreground">{h.desc}</div>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
+            {/* arrow accents */}
+            <div className="absolute -left-3 -top-3 grid h-8 w-8 place-items-center rounded-full bg-paper text-ink shadow">
+              <ArrowUpRight className="h-4 w-4" />
             </div>
-          </Reveal>
-        </div>
+            <div className="absolute -right-3 bottom-12 grid h-8 w-8 place-items-center rounded-full bg-paper text-ink shadow rotate-180">
+              <ArrowUpRight className="h-4 w-4" />
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <div>
+            <span className="chip">ABOUT ME</span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
+              I'm an{" "}
+              <span className="inline-flex items-center rounded-full bg-secondary px-3 py-0.5 align-middle">
+                <span className="text-2xl font-bold sm:text-3xl">ENTC</span>
+              </span>{" "}
+              Engineer
+              <br />
+              Building Smart Hardware &amp; IoT.
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/65">
+              I design embedded systems, prototype IoT products, and mentor diploma &amp; engineering students through
+              hands-on workshops — bridging hardware, firmware and real-world deployment.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-end gap-5">
+              {skills.map((s) => (
+                <div key={s.name} className="flex flex-col items-center">
+                  <div className="grid h-16 w-16 place-items-center rounded-full border border-ink/15 bg-paper shadow-sm">
+                    <SkillIcon name={s.name} />
+                  </div>
+                  <div className="mt-2 text-xs font-semibold text-ink">{s.name}</div>
+                  <div className="text-[11px] font-bold text-ink/70">{s.level}%</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function Pill({ label }: { label: string }) {
-  return (
-    <div className="rounded-full border border-border bg-surface/60 px-3 py-1.5 text-center text-xs font-medium text-muted-foreground">
-      {label}
-    </div>
-  );
+function SkillIcon({ name }: { name: string }) {
+  const map: Record<string, any> = {
+    Arduino: Cpu,
+    ESP32: Wifi,
+    IoT: CircuitBoard,
+    "PCB Design": Microscope,
+  };
+  const Icon = map[name] ?? Sparkles;
+  return <Icon className="h-7 w-7 text-ink" />;
 }
 
-/* ───────────────── EDUCATION ───────────────── */
-function Education() {
+/* ───────────────── SERVICES (DARK BENTO) ───────────────── */
+function Services() {
   return (
-    <section id="education" className="relative py-24 sm:py-32">
+    <section id="services" className="relative overflow-hidden bg-ink py-20 text-cream sm:py-28">
+      <div aria-hidden className="absolute inset-0 grid-faint opacity-50" />
+      <ChevronsDown className="absolute left-10 top-16 hidden h-10 w-10 text-lime sm:block" />
+      <div aria-hidden className="absolute bottom-12 right-10 h-3 w-3 rounded-full bg-lime" />
+
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="02 — Education" title="Academic Foundation" />
-
-        <div className="mt-14">
+        <div className="grid items-start gap-10 lg:grid-cols-[auto_1fr]">
+          <span className="chip">SERVICES</span>
           <Reveal>
-            <div className="glass-card glass-card-hover relative overflow-hidden rounded-3xl p-8 sm:p-10">
-              <div
-                aria-hidden
-                className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[radial-gradient(circle,oklch(0.65_0.21_256/0.3),transparent_70%)] blur-2xl"
-              />
-              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 sm:flex sm:items-center sm:justify-between">
-                <div className="flex min-w-0 items-start gap-4">
-                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-primary)] text-background shadow-[var(--shadow-glow)]">
-                    <GraduationCap className="h-7 w-7" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs uppercase tracking-[0.18em] text-primary">Diploma · Completed</div>
-                    <h3 className="mt-1 font-display text-xl font-semibold sm:text-2xl">
-                      Diploma in Electronics Engineering
-                    </h3>
-                    <div className="mt-1 text-sm text-muted-foreground">
-                      Dr. Panjabrao Deshmukh Polytechnic, Amravati
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-display text-3xl font-bold text-gradient">78%</div>
-                  <div className="text-xs text-muted-foreground">2022 – 2025</div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="glass-card glass-card-hover mt-5 rounded-3xl p-8 sm:p-10">
-              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 sm:flex sm:items-center sm:justify-between">
-                <div className="flex min-w-0 items-start gap-4">
-                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-cyan-accent/40 bg-cyan-accent/10 text-cyan-accent">
-                    <Building2 className="h-7 w-7" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-xs uppercase tracking-[0.18em] text-cyan-accent">B.Tech · 3rd Year</div>
-                    <h3 className="mt-1 font-display text-xl font-semibold sm:text-2xl">
-                      Electronics & Telecommunication Engineering
-                    </h3>
-                    <div className="mt-1 text-sm text-muted-foreground">
-                      Prof. Ram Meghe Institute of Technology and Research
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-display text-3xl font-bold text-foreground/80">Ongoing</div>
-                  <div className="text-xs text-muted-foreground">3rd Year</div>
-                </div>
-              </div>
-            </div>
+            <h2 className="font-display text-2xl font-bold leading-snug sm:text-3xl">
+              I build clean, reliable hardware &amp; embedded systems that fuse
+              <br className="hidden md:block" />
+              electronics, firmware and IoT into real-world solutions.
+            </h2>
           </Reveal>
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ───────────────── EXPERIENCE ───────────────── */
-function Experience() {
-  return (
-    <section id="experience" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="03 — Experience" title="Where I've Been Building" />
+        <div className="mt-12 grid items-stretch gap-5 lg:grid-cols-[auto_1fr]">
+          {/* Vertical labels */}
+          <div className="hidden flex-col items-center justify-between border-l border-cream/15 pl-3 lg:flex">
+            <ChevronsUp className="h-5 w-5 text-cream/60" />
+            <div className="vert-text text-xs uppercase tracking-[0.3em] text-cream/70">Development</div>
+            <div className="vert-text text-xs uppercase tracking-[0.3em] text-cream/70">Design</div>
+            <ChevronsDown className="h-5 w-5 text-cream/60" />
+          </div>
 
-        <div className="relative mt-14">
-          {/* Timeline rail */}
-          <div
-            aria-hidden
-            className="absolute left-5 top-2 hidden h-[calc(100%-1rem)] w-px bg-gradient-to-b from-primary/60 via-cyan-accent/40 to-transparent sm:block"
-          />
-
-          <div className="space-y-6">
-            {experiences.map((exp, i) => (
-              <Reveal key={exp.role} delay={i * 80}>
-                <div className="relative grid gap-4 sm:grid-cols-[40px_1fr]">
-                  <div className="hidden sm:block">
-                    <div className="relative mt-6 grid h-10 w-10 place-items-center rounded-full border border-primary/40 bg-background">
-                      <Briefcase className="h-4 w-4 text-primary" />
-                      <span className="absolute -inset-2 rounded-full bg-primary/10 blur-md" />
-                    </div>
-                  </div>
-
-                  <div className="glass-card glass-card-hover rounded-2xl p-6 sm:p-7">
-                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 sm:flex sm:items-center sm:justify-between">
-                      <div className="min-w-0">
-                        <h3 className="font-display text-lg font-semibold">{exp.role}</h3>
-                        <div className="mt-1 text-sm text-primary">{exp.org}</div>
-                      </div>
-                      <div className="flex shrink-0 flex-col items-end gap-1.5">
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/70 px-2.5 py-1 text-[11px] text-muted-foreground">
-                          <Calendar className="h-3 w-3" /> {exp.period}
-                        </span>
-                        <span className="rounded-full bg-cyan-accent/15 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-cyan-accent">
-                          {exp.type}
-                        </span>
-                      </div>
-                    </div>
-                    <ul className="mt-4 space-y-2">
-                      {exp.bullets.map((b) => (
-                        <li key={b} className="flex gap-2.5 text-sm text-muted-foreground">
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {services.map((s, i) => (
+              <Reveal key={s.num} delay={i * 60}>
+                <ServiceCard num={s.num} title={s.title} short={s.short} highlight={i === 0 || i === 3} />
               </Reveal>
             ))}
           </div>
@@ -527,105 +372,113 @@ function Experience() {
   );
 }
 
-/* ───────────────── SKILLS ───────────────── */
-function Skills() {
+function ServiceCard({
+  num,
+  title,
+  short,
+  highlight,
+}: {
+  num: string;
+  title: string;
+  short: string;
+  highlight?: boolean;
+}) {
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="04 — Skills" title="Toolbox" />
+    <div
+      className={`group flex h-full flex-col justify-between rounded-2xl border p-5 transition-all ${
+        highlight
+          ? "border-transparent bg-lime text-ink"
+          : "border-cream/15 bg-cream text-ink hover:-translate-y-1"
+      }`}
+    >
+      <div className="flex items-start justify-between text-xs font-mono">
+        <span className="rounded-md bg-ink/10 px-2 py-0.5 text-[10px] font-semibold uppercase">{short}</span>
+        <span className="font-display text-2xl font-extrabold">{num}</span>
+      </div>
+      <div className="mt-10">
+        <div className="font-display text-xl font-bold leading-tight">{title}</div>
+        <div className="mt-2 flex items-center justify-between text-xs">
+          <span className="text-ink/70">Mastery</span>
+          <span className="font-display text-2xl font-extrabold">95%</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+/* ───────────────── JOURNEY (EXPERIENCE + EDUCATION) ───────────────── */
+function Journey() {
+  return (
+    <section id="experience" className="relative bg-cream py-20 sm:py-28">
+      <Asterisk aria-hidden className="absolute left-10 top-12 hidden h-10 w-10 text-ink/60 lg:block" />
+      <Asterisk aria-hidden className="absolute right-1/3 top-1/3 hidden h-8 w-8 text-lime lg:block" />
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid items-start gap-6 lg:grid-cols-[auto_1fr]">
+          <span className="chip-dark">EXPERIENCE</span>
           <Reveal>
-            <div className="glass-card rounded-3xl p-6 sm:p-8">
-              <div className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                <Layers className="h-4 w-4" /> Technical
-              </div>
-              <div className="space-y-5">
-                {techSkills.map((s, i) => (
-                  <SkillBar key={s.name} name={s.name} level={s.level} delay={i * 80} />
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <div className="glass-card rounded-3xl p-6 sm:p-8">
-              <div className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-accent">
-                <Lightbulb className="h-4 w-4" /> Professional
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {proSkills.map((p) => (
-                  <span
-                    key={p}
-                    className="rounded-full border border-border bg-surface/60 px-3.5 py-2 text-sm text-foreground/90 transition-all hover:-translate-y-0.5 hover:border-cyan-accent/60 hover:text-cyan-accent"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-5">
-                <div className="font-display text-lg font-semibold">Currently exploring</div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  VLSI Physical Design flows · DFT methodologies · Industrial-grade IoT deployments.
-                </p>
-              </div>
-            </div>
+            <h2 className="font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+              A Journey Through My Engineering Career,
+              <br className="hidden md:block" />
+              Building Real Hardware &amp; IoT Solutions.
+            </h2>
           </Reveal>
         </div>
-      </div>
-    </section>
-  );
-}
 
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  return (
-    <Reveal delay={delay}>
-      <div>
-        <div className="flex items-center justify-between text-sm">
-          <span className="font-medium">{name}</span>
-          <span className="font-mono text-xs text-muted-foreground">{level}%</span>
-        </div>
-        <div className="mt-2 h-2 overflow-hidden rounded-full bg-secondary">
-          <div
-            className="h-full rounded-full bg-[image:var(--gradient-primary)] shadow-[0_0_12px_oklch(0.65_0.21_256/0.6)]"
-            style={{
-              width: `${level}%`,
-              transition: "width 1.2s cubic-bezier(0.2,0.8,0.2,1)",
-              transitionDelay: `${delay + 100}ms`,
-            }}
-          />
-        </div>
-      </div>
-    </Reveal>
-  );
-}
+        <div className="mt-14 grid gap-8 lg:grid-cols-[auto_1fr_1fr]">
+          {/* Vertical JOURNEY label */}
+          <div className="hidden flex-col items-center justify-between lg:flex">
+            <Asterisk className="h-6 w-6 text-ink" />
+            <div
+              className="vert-text font-display text-[3.5rem] font-extrabold uppercase leading-none text-ink"
+              style={{ WebkitTextStroke: "1px var(--ink)", color: "transparent" }}
+            >
+              JOURNEY
+            </div>
+            <ChevronsDown className="h-6 w-6 text-ink" />
+          </div>
 
-/* ───────────────── SERVICES ───────────────── */
-function Services() {
-  return (
-    <section id="services" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="05 — Services" title="What I Offer" />
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 60}>
-              <div className="glass-card glass-card-hover group relative h-full overflow-hidden rounded-3xl p-6">
-                <div
-                  aria-hidden
-                  className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[radial-gradient(circle,oklch(0.65_0.21_256/0.25),transparent_70%)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-                />
-                <div className="relative">
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl border border-primary/30 bg-primary/10 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-background">
-                    <s.icon className="h-6 w-6" />
+          {/* Experience column */}
+          <div className="flex flex-col gap-4">
+            {experiences.map((e, i) => (
+              <Reveal key={e.role} delay={i * 80}>
+                <article
+                  className={`rounded-2xl border p-5 ${
+                    e.highlight ? "border-transparent bg-lime" : "border-ink/12 bg-paper"
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="flex items-center gap-1.5 font-medium text-ink/70">
+                      <Calendar className="h-3 w-3" /> {e.period}
+                    </span>
+                    <span className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-cream">
+                      {e.type}
+                    </span>
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-semibold">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+                  <h3 className="mt-2 font-display text-lg font-bold text-ink">{e.role}</h3>
+                  <div className="text-xs font-medium text-ink/60">{e.org}</div>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{e.desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Education column */}
+          <div className="relative flex flex-col gap-4">
+            <div aria-hidden className="absolute -left-3 top-2 hidden h-[calc(100%-1rem)] w-px border-l border-dashed border-ink/30 lg:block" />
+            {education.map((e, i) => (
+              <Reveal key={e.title} delay={i * 80}>
+                <article className="rounded-2xl border border-ink/12 bg-paper p-5">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-medium text-ink/70">{e.period}</span>
+                    <span className="font-semibold text-ink/70">{e.org}</span>
+                  </div>
+                  <h3 className="mt-2 font-display text-lg font-bold text-ink">{e.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{e.desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -635,96 +488,46 @@ function Services() {
 /* ───────────────── PROJECTS ───────────────── */
 function Projects() {
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="06 — Projects" title="Selected Work" />
+    <section id="projects" className="relative bg-lime-soft py-20 sm:py-28">
+      <ChevronsUp className="absolute left-10 bottom-16 hidden h-10 w-10 text-ink lg:block" />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid items-start gap-6 lg:grid-cols-[auto_1fr]">
+          <span className="chip-dark">PROJECTS</span>
+          <Reveal>
+            <h2 className="font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+              A Curated Collection of My Recent
+              <br className="hidden md:block" />
+              Embedded &amp; IoT Engineering Projects.
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <Reveal key={p.title} delay={i * 100}>
-              <article className="glass-card glass-card-hover group flex h-full flex-col overflow-hidden rounded-3xl">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    loading="lazy"
-                    width={1024}
-                    height={768}
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                  <div className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-border bg-background/70 text-foreground backdrop-blur transition-transform duration-500 group-hover:rotate-45">
-                    <ArrowUpRight className="h-4 w-4" />
+            <Reveal key={p.id} delay={i * 80}>
+              <article className="paper-card paper-card-hover overflow-hidden">
+                <div className="flex items-start justify-between p-5 pb-3">
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">{p.name}</h3>
+                    <div className="font-mono text-[11px] text-ink/55">{p.meta}</div>
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px] text-ink/70"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+                  <span className="font-display text-2xl font-extrabold text-ink/80">{p.id}</span>
                 </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h3 className="font-display text-xl font-semibold">{p.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-border bg-surface/70 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                <div className="overflow-hidden">
+                  <img src={p.img} alt={p.name} className="aspect-[4/3] w-full object-cover" />
                 </div>
               </article>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={200}>
-          <div className="mt-8 rounded-3xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
-            More projects in robotics, automation, and VLSI coming soon — case studies in progress.
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ───────────────── ACHIEVEMENTS ───────────────── */
-function Achievements() {
-  return (
-    <section id="achievements" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="07 — Impact" title="By the Numbers" />
-
-        <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80}>
-              <div className="glass-card glass-card-hover rounded-3xl p-6 text-center sm:p-8">
-                <div className="font-display text-4xl font-bold text-gradient sm:text-5xl">
-                  <Counter to={s.value} suffix={s.suffix} />
-                </div>
-                <div className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">{s.label}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { icon: Award, t: "Technical Workshops", d: "Conducted hands-on workshops across schools and colleges." },
-            { icon: Users, t: "Student Training", d: "Mentored students on Arduino, IoT and automation projects." },
-            { icon: Sparkles, t: "IEEE Participation", d: "Active member contributing to technical events." },
-            { icon: Wrench, t: "Project Contributions", d: "Delivered embedded and automation systems end-to-end." },
-            { icon: GraduationCap, t: "Engineering Mentorship", d: "Helped diploma and B.Tech students ship real projects." },
-            { icon: CircuitBoard, t: "Atal Tinkering Labs", d: "Collaborated on hardware sessions for school labs." },
-          ].map((a, i) => (
-            <Reveal key={a.t} delay={i * 60}>
-              <div className="glass-card glass-card-hover flex h-full gap-3 rounded-2xl p-5">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-cyan-accent/10 text-cyan-accent">
-                  <a.icon className="h-5 w-5" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-semibold">{a.t}</div>
-                  <div className="text-xs text-muted-foreground">{a.d}</div>
-                </div>
-              </div>
             </Reveal>
           ))}
         </div>
@@ -763,89 +566,108 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" className="relative bg-ink py-20 text-cream sm:py-28">
+      <div aria-hidden className="absolute inset-0 grid-faint opacity-30" />
+
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHead eyebrow="08 — Contact" title="Let's Build Something Innovative" />
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+        <div className="grid items-center gap-6 lg:grid-cols-[auto_1fr]">
+          <span className="chip">CONTACT</span>
           <Reveal>
-            <div className="glass-card flex h-full flex-col justify-between gap-6 rounded-3xl p-7">
-              <div>
-                <h3 className="font-display text-2xl font-semibold">Get in touch</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Whether it's a project collaboration, mentorship, or a workshop request — I'd love to hear from you.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <ContactItem icon={Mail} label="Email" value="shravanwanve@gmail.com" href="mailto:shravanwanve@gmail.com" />
-                <ContactItem icon={Phone} label="Phone" value="+91 74981 76331" href="tel:+917498176331" />
-                <ContactItem
-                  icon={Linkedin}
-                  label="LinkedIn"
-                  value="shravan-wanve"
-                  href="https://www.linkedin.com/in/shravan-wanve-44097b312"
-                />
-                <ContactItem icon={MapPin} label="Location" value="Amravati, Maharashtra, India" />
-              </div>
-
-              <div className="overflow-hidden rounded-2xl border border-border">
-                <iframe
-                  title="Amravati location"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=77.70%2C20.85%2C77.85%2C20.99&layer=mapnik&marker=20.9374%2C77.7796"
-                  className="h-44 w-full grayscale invert-[0.92]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            <h2 className="font-display text-2xl font-bold leading-snug sm:text-3xl">
+              Let's Connect, Collaborate and Build
+              <br className="hidden md:block" />
+              Innovative Hardware Together.
+            </h2>
           </Reveal>
+        </div>
 
-          <Reveal delay={120}>
-            <form onSubmit={onSubmit} className="glass-card rounded-3xl p-7">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Name" name="name" placeholder="Your name" />
+        <div className="mt-12 grid gap-6 lg:grid-cols-[auto_1.1fr_0.9fr]">
+          {/* Vertical HELLO */}
+          <div className="hidden items-end justify-center lg:flex">
+            <div
+              className="vert-text font-display text-[5rem] font-extrabold leading-none"
+              style={{ WebkitTextStroke: "1.5px var(--cream)", color: "transparent" }}
+            >
+              HELLO
+            </div>
+          </div>
+
+          {/* Form */}
+          <Reveal>
+            <form onSubmit={onSubmit} className="rounded-3xl bg-paper p-6 text-ink sm:p-7">
+              <div className="mb-4">
+                <div className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/60">Service You Need</div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {["Embedded", "IoT", "PCB", "Mentorship"].map((s, i) => (
+                    <button
+                      key={s}
+                      type="button"
+                      className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                        i === 0 ? "bg-lime text-ink" : "bg-secondary text-ink/70 hover:bg-ink hover:text-cream"
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <Field label="Name" name="name" placeholder="Your name" />
+              <div className="mt-3">
                 <Field label="Email" name="email" type="email" placeholder="you@example.com" />
               </div>
-              <div className="mt-4">
-                <label className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">Message</label>
+              <div className="mt-3">
+                <label className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/60">Message</label>
                 <textarea
                   name="message"
-                  rows={6}
-                  placeholder="Tell me about your idea, project, or workshop request…"
-                  className="mt-2 w-full resize-none rounded-2xl border border-border bg-surface/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  rows={4}
+                  placeholder="Tell me about your idea, project or workshop…"
+                  className="mt-1.5 w-full resize-none rounded-2xl border border-ink/15 bg-cream/40 px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-ink focus:outline-none"
                 />
               </div>
               <button
                 type="submit"
                 disabled={sending}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[image:var(--gradient-primary)] px-5 py-3.5 text-sm font-semibold text-background shadow-[var(--shadow-glow)] transition-transform hover:scale-[1.01] disabled:opacity-60"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-sm font-bold text-ink transition-transform hover:scale-[1.02] disabled:opacity-60"
               >
-                {sending ? "Sending…" : (<><Send className="h-4 w-4" /> Send Message</>)}
+                {sending ? "Sending…" : (<><Send className="h-4 w-4" /> Contact Me</>)}
               </button>
-
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                <a
-                  href="mailto:shravanwanve@gmail.com"
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-border bg-surface/60 px-3 py-2.5 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  <Mail className="h-3.5 w-3.5" /> Email
-                </a>
-                <a
-                  href="tel:+917498176331"
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-border bg-surface/60 px-3 py-2.5 text-xs font-medium transition-colors hover:border-cyan-accent/50 hover:text-cyan-accent"
-                >
-                  <Phone className="h-3.5 w-3.5" /> Call
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/shravan-wanve-44097b312"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-border bg-surface/60 px-3 py-2.5 text-xs font-medium transition-colors hover:border-primary/50 hover:text-primary"
-                >
-                  <Linkedin className="h-3.5 w-3.5" /> LinkedIn
-                </a>
-              </div>
             </form>
+          </Reveal>
+
+          {/* Side info */}
+          <Reveal delay={100}>
+            <div className="flex flex-col gap-3">
+              <ContactPill
+                icon={Mail}
+                label="Send your message"
+                value="shravanwanve@gmail.com"
+                href="mailto:shravanwanve@gmail.com"
+                accent
+              />
+              <ContactPill
+                icon={Phone}
+                label="Let's Talk"
+                value="+91 74981 76331"
+                href="tel:+917498176331"
+              />
+              <ContactPill
+                icon={Linkedin}
+                label="LinkedIn"
+                value="shravan-wanve"
+                href="https://www.linkedin.com/in/shravan-wanve-44097b312"
+              />
+              <div className="overflow-hidden rounded-2xl border border-cream/15">
+                <iframe
+                  title="Amravati location"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=77.70%2C20.85%2C77.85%2C20.99&layer=mapnik&marker=20.9374%2C77.7796"
+                  className="h-36 w-full"
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex items-center gap-2 rounded-2xl border border-cream/15 px-4 py-3 text-xs text-cream/70">
+                <MapPin className="h-4 w-4 text-lime" /> Amravati, Maharashtra, India
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>
@@ -853,34 +675,43 @@ function Contact() {
   );
 }
 
-function ContactItem({
+function ContactPill({
   icon: Icon,
   label,
   value,
   href,
+  accent,
 }: {
   icon: any;
   label: string;
   value: string;
-  href?: string;
+  href: string;
+  accent?: boolean;
 }) {
-  const Body = (
-    <div className="group flex items-center gap-3 rounded-2xl border border-border bg-surface/50 px-4 py-3 transition-all hover:border-primary/40">
-      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel="noreferrer"
+      className={`group flex items-center gap-3 rounded-2xl px-4 py-3 transition-all ${
+        accent
+          ? "bg-lime text-ink hover:scale-[1.01]"
+          : "border border-cream/15 bg-cream/5 text-cream hover:bg-cream/10"
+      }`}
+    >
+      <div
+        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${
+          accent ? "bg-ink text-lime" : "bg-cream/10 text-lime"
+        }`}
+      >
         <Icon className="h-5 w-5" />
       </div>
-      <div className="min-w-0">
-        <div className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{label}</div>
-        <div className="truncate text-sm font-medium text-foreground">{value}</div>
+      <div className="min-w-0 flex-1">
+        <div className="text-[11px] font-semibold uppercase tracking-wider opacity-70">{label}</div>
+        <div className="truncate text-sm font-semibold">{value}</div>
       </div>
-    </div>
-  );
-  return href ? (
-    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-      {Body}
+      <ArrowUpRight className="h-4 w-4 opacity-60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
     </a>
-  ) : (
-    Body
   );
 }
 
@@ -897,12 +728,12 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">{label}</label>
+      <label className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/60">{label}</label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-2xl border border-border bg-surface/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+        className="mt-1.5 w-full rounded-2xl border border-ink/15 bg-cream/40 px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-ink focus:outline-none"
       />
     </div>
   );
@@ -911,85 +742,15 @@ function Field({
 /* ───────────────── FOOTER ───────────────── */
 function Footer() {
   return (
-    <footer className="relative mt-10 border-t border-border/60 py-12">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <div className="flex items-center gap-2 font-display text-base font-semibold">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-[image:var(--gradient-primary)] text-background">
-                SW
-              </span>
-              Shravan Murlidhar Wanve
-            </div>
-            <p className="mt-3 max-w-md text-sm text-muted-foreground">
-              Engineering Ideas Into Reality — embedded systems, IoT, robotics, and VLSI projects built with care.
-            </p>
-          </div>
-
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Navigate</div>
-            <ul className="mt-3 space-y-1.5 text-sm">
-              {["About", "Experience", "Skills", "Projects", "Contact"].map((l) => (
-                <li key={l}>
-                  <a
-                    href={`#${l.toLowerCase()}`}
-                    className="text-foreground/80 transition-colors hover:text-primary"
-                  >
-                    {l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Connect</div>
-            <div className="mt-3 flex gap-2">
-              <SocialBtn href="mailto:shravanwanve@gmail.com" icon={Mail} />
-              <SocialBtn href="tel:+917498176331" icon={Phone} />
-              <SocialBtn
-                href="https://www.linkedin.com/in/shravan-wanve-44097b312"
-                icon={Linkedin}
-                external
-              />
-              <SocialBtn href="#" icon={Github} />
-            </div>
-          </div>
+    <footer className="bg-ink py-8 text-cream">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-cream/15 px-4 pt-6 text-xs sm:flex-row sm:px-6">
+        <div className="text-cream/60">© {new Date().getFullYear()} All rights reserved.</div>
+        <div className="flex items-center gap-2 text-cream/70">
+          <span className="h-2 w-2 rounded-full bg-lime" />
+          Available for work
         </div>
-
-        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <div>© {new Date().getFullYear()} Shravan Murlidhar Wanve. All rights reserved.</div>
-          <div>Designed & Developed by Shravan Murlidhar Wanve</div>
-        </div>
+        <div className="text-cream/60">Built by Shravan Wanve</div>
       </div>
     </footer>
-  );
-}
-
-function SocialBtn({ href, icon: Icon, external }: { href: string; icon: any; external?: boolean }) {
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel="noreferrer"
-      className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-surface/60 text-foreground/80 transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:text-primary"
-    >
-      <Icon className="h-4 w-4" />
-    </a>
-  );
-}
-
-/* ───────────────── SHARED ───────────────── */
-function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
-  return (
-    <Reveal>
-      <div className="flex flex-col gap-3">
-        <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-primary">{eyebrow}</span>
-        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">
-          {title}
-        </h2>
-        <div className="h-px w-16 bg-[image:var(--gradient-primary)]" />
-      </div>
-    </Reveal>
   );
 }
