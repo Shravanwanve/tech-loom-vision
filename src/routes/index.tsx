@@ -198,9 +198,17 @@ function Hero() {
 
             <div className="mt-10 max-w-md">
               <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-                Electronics &amp; Embedded
+                <TypingText
+                  words={[
+                    "Electronics Engineer",
+                    "Embedded Developer",
+                    "IoT Builder",
+                    "VLSI / DFT Learner",
+                    "Robotics Enthusiast",
+                  ]}
+                />
                 <br />
-                Engineer Based
+                Based
                 <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 text-base text-cream">
                   <Cpu className="h-3.5 w-3.5 text-lime" /> In India
                 </span>
