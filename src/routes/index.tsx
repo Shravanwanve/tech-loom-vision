@@ -587,28 +587,30 @@ function Projects() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={i * 80}>
-              <article className="paper-card paper-card-hover overflow-hidden">
-                <div className="flex items-start justify-between p-5 pb-3">
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink">{p.name}</h3>
-                    <div className="font-mono text-[11px] text-ink/55">{p.meta}</div>
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px] text-ink/70"
-                        >
-                          {t}
-                        </span>
-                      ))}
+              <TiltCard>
+                <article className="paper-card paper-card-hover overflow-hidden">
+                  <div className="flex items-start justify-between p-5 pb-3">
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-ink">{p.name}</h3>
+                      <div className="font-mono text-[11px] text-ink/55">{p.meta}</div>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        {p.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px] text-ink/70"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <span className="font-display text-2xl font-extrabold text-ink/80">{p.id}</span>
                   </div>
-                  <span className="font-display text-2xl font-extrabold text-ink/80">{p.id}</span>
-                </div>
-                <div className="overflow-hidden">
-                  <img src={p.img} alt={p.name} className="aspect-[4/3] w-full object-cover" />
-                </div>
-              </article>
+                  <div className="overflow-hidden">
+                    <img src={p.img} alt={p.name} className="aspect-[4/3] w-full object-cover" />
+                  </div>
+                </article>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
