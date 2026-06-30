@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Cpu,
   Wifi,
@@ -28,7 +28,12 @@ import {
 import { toast } from "sonner";
 import { Nav } from "@/components/portfolio/Nav";
 import { Reveal } from "@/components/portfolio/Reveal";
-import profileImg from "@/assets/profile.jpg";
+import { TypingText } from "@/components/portfolio/TypingText";
+import { FloatingPCB } from "@/components/portfolio/FloatingPCB";
+import { TiltCard } from "@/components/portfolio/TiltCard";
+import { ProgressBar } from "@/components/portfolio/ProgressBar";
+import { Counter } from "@/components/portfolio/Counter";
+import profileImg from "@/assets/profile-shravan.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
 
