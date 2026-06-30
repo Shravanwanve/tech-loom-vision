@@ -360,7 +360,53 @@ function SkillIcon({ name }: { name: string }) {
     "PCB Design": Microscope,
   };
   const Icon = map[name] ?? Sparkles;
-  return <Icon className="h-7 w-7 text-ink" />;
+  return <Icon className="h-5 w-5 text-ink" />;
+}
+
+/* ───────────────── ACHIEVEMENTS ───────────────── */
+const stats = [
+  { value: 25, suffix: "+", label: "Workshops Delivered", icon: Users },
+  { value: 12, suffix: "+", label: "Projects Built", icon: CircuitBoard },
+  { value: 3, suffix: "+", label: "Years in Electronics", icon: Cpu },
+  { value: 200, suffix: "+", label: "Students Mentored", icon: GraduationCap },
+];
+
+function Achievements() {
+  return (
+    <section className="relative overflow-hidden bg-lime-soft py-16 sm:py-20">
+      <div aria-hidden className="absolute inset-0 opacity-40">
+        <FloatingPCB />
+      </div>
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mb-8 flex items-center gap-3">
+          <span className="chip-dark">ACHIEVEMENTS</span>
+          <div className="font-display text-xl font-bold text-ink sm:text-2xl">
+            Numbers that power the journey
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 80}>
+              <TiltCard className="rounded-2xl border border-ink/15 bg-paper p-5">
+                <div className="flex items-center justify-between">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-ink text-lime">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <Award className="h-4 w-4 text-ink/40" />
+                </div>
+                <div className="mt-4 font-display text-4xl font-extrabold leading-none text-ink">
+                  <Counter to={s.value} suffix={s.suffix} />
+                </div>
+                <div className="mt-1.5 text-xs font-semibold uppercase tracking-wider text-ink/60">
+                  {s.label}
+                </div>
+              </TiltCard>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /* ───────────────── SERVICES (DARK BENTO) ───────────────── */
@@ -395,7 +441,9 @@ function Services() {
           <div className="grid gap-4 sm:grid-cols-3">
             {services.map((s, i) => (
               <Reveal key={s.num} delay={i * 60}>
-                <ServiceCard num={s.num} title={s.title} short={s.short} highlight={i === 0 || i === 3} />
+                <TiltCard>
+                  <ServiceCard num={s.num} title={s.title} short={s.short} highlight={i === 0 || i === 3} />
+                </TiltCard>
               </Reveal>
             ))}
           </div>
