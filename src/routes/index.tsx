@@ -67,8 +67,7 @@ const services = [
   { num: "02", title: "IoT Systems", short: "Connected" },
   { num: "03", title: "PCB Design", short: "Schematic" },
   { num: "04", title: "Robotics", short: "Autonomous" },
-  { num: "05", title: "VLSI / DFT", short: "Physical Design" },
-  { num: "06", title: "Mentorship", short: "Workshops" },
+  { num: "05", title: "Mentorship", short: "Workshops" },
 ];
 
 const experiences = [
@@ -131,13 +130,6 @@ const projects = [
     meta: "(Duration: 10 Days)",
     tags: ["ESP32", "Cloud", "Sensors"],
     img: projectEnergy,
-  },
-  {
-    id: "03",
-    name: "AutoLab",
-    meta: "(Duration: 7 Days)",
-    tags: ["PCB", "Automation"],
-    img: profileImg,
   },
 ];
 
@@ -365,7 +357,7 @@ function SkillIcon({ name }: { name: string }) {
 
 /* ───────────────── ACHIEVEMENTS ───────────────── */
 const stats = [
-  { value: 25, suffix: "+", label: "Workshops Delivered", icon: Users },
+  { value: 10, suffix: "+", label: "Workshops Delivered", icon: Users },
   { value: 12, suffix: "+", label: "Projects Built", icon: CircuitBoard },
   { value: 3, suffix: "+", label: "Years in Electronics", icon: Cpu },
   { value: 200, suffix: "+", label: "Students Mentored", icon: GraduationCap },
