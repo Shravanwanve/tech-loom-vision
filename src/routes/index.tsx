@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Cpu,
   Wifi,
@@ -28,7 +28,12 @@ import {
 import { toast } from "sonner";
 import { Nav } from "@/components/portfolio/Nav";
 import { Reveal } from "@/components/portfolio/Reveal";
-import profileImg from "@/assets/profile.jpg";
+import { TypingText } from "@/components/portfolio/TypingText";
+import { FloatingPCB } from "@/components/portfolio/FloatingPCB";
+import { TiltCard } from "@/components/portfolio/TiltCard";
+import { ProgressBar } from "@/components/portfolio/ProgressBar";
+import { Counter } from "@/components/portfolio/Counter";
+import profileImg from "@/assets/profile-shravan.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
 
@@ -145,6 +150,7 @@ function Portfolio() {
       <Hero />
       <Marquee />
       <About />
+      <Achievements />
       <Services />
       <Journey />
       <Projects />
@@ -156,8 +162,22 @@ function Portfolio() {
 
 /* ───────────────── HERO ───────────────── */
 function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="relative isolate overflow-hidden bg-cream pb-12 pt-28 sm:pt-32">
+      {/* Parallax PCB layer */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ transform: `translateY(${scrollY * 0.25}px)` }}
+      >
+        <FloatingPCB />
+      </div>
       {/* Decorative squiggles */}
       <DecoSquiggle className="absolute right-6 top-16 hidden h-32 w-32 text-ink/70 sm:block" />
       <DecoSquiggle className="absolute left-2 top-1/2 hidden h-20 w-20 -translate-y-1/2 text-ink/60 md:block" />
@@ -178,9 +198,17 @@ function Hero() {
 
             <div className="mt-10 max-w-md">
               <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-                Electronics &amp; Embedded
+                <TypingText
+                  words={[
+                    "Electronics Engineer",
+                    "Embedded Developer",
+                    "IoT Builder",
+                    "VLSI / DFT Learner",
+                    "Robotics Enthusiast",
+                  ]}
+                />
                 <br />
-                Engineer Based
+                Based
                 <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-0.5 text-base text-cream">
                   <Cpu className="h-3.5 w-3.5 text-lime" /> In India
                 </span>
@@ -301,14 +329,19 @@ function About() {
               hands-on workshops — bridging hardware, firmware and real-world deployment.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-end gap-5">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {skills.map((s) => (
-                <div key={s.name} className="flex flex-col items-center">
-                  <div className="grid h-16 w-16 place-items-center rounded-full border border-ink/15 bg-paper shadow-sm">
-                    <SkillIcon name={s.name} />
+                <div key={s.name} className="rounded-2xl border border-ink/12 bg-paper p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="grid h-9 w-9 place-items-center rounded-lg bg-lime/60">
+                        <SkillIcon name={s.name} />
+                      </div>
+                      <div className="text-sm font-semibold text-ink">{s.name}</div>
+                    </div>
+                    <div className="font-mono text-xs font-bold text-ink/70">{s.level}%</div>
                   </div>
-                  <div className="mt-2 text-xs font-semibold text-ink">{s.name}</div>
-                  <div className="text-[11px] font-bold text-ink/70">{s.level}%</div>
+                  <ProgressBar value={s.level} className="mt-3" />
                 </div>
               ))}
             </div>
@@ -327,7 +360,53 @@ function SkillIcon({ name }: { name: string }) {
     "PCB Design": Microscope,
   };
   const Icon = map[name] ?? Sparkles;
-  return <Icon className="h-7 w-7 text-ink" />;
+  return <Icon className="h-5 w-5 text-ink" />;
+}
+
+/* ───────────────── ACHIEVEMENTS ───────────────── */
+const stats = [
+  { value: 25, suffix: "+", label: "Workshops Delivered", icon: Users },
+  { value: 12, suffix: "+", label: "Projects Built", icon: CircuitBoard },
+  { value: 3, suffix: "+", label: "Years in Electronics", icon: Cpu },
+  { value: 200, suffix: "+", label: "Students Mentored", icon: GraduationCap },
+];
+
+function Achievements() {
+  return (
+    <section className="relative overflow-hidden bg-lime-soft py-16 sm:py-20">
+      <div aria-hidden className="absolute inset-0 opacity-40">
+        <FloatingPCB />
+      </div>
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mb-8 flex items-center gap-3">
+          <span className="chip-dark">ACHIEVEMENTS</span>
+          <div className="font-display text-xl font-bold text-ink sm:text-2xl">
+            Numbers that power the journey
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 80}>
+              <TiltCard className="rounded-2xl border border-ink/15 bg-paper p-5">
+                <div className="flex items-center justify-between">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-ink text-lime">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <Award className="h-4 w-4 text-ink/40" />
+                </div>
+                <div className="mt-4 font-display text-4xl font-extrabold leading-none text-ink">
+                  <Counter to={s.value} suffix={s.suffix} />
+                </div>
+                <div className="mt-1.5 text-xs font-semibold uppercase tracking-wider text-ink/60">
+                  {s.label}
+                </div>
+              </TiltCard>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /* ───────────────── SERVICES (DARK BENTO) ───────────────── */
@@ -362,7 +441,9 @@ function Services() {
           <div className="grid gap-4 sm:grid-cols-3">
             {services.map((s, i) => (
               <Reveal key={s.num} delay={i * 60}>
-                <ServiceCard num={s.num} title={s.title} short={s.short} highlight={i === 0 || i === 3} />
+                <TiltCard>
+                  <ServiceCard num={s.num} title={s.title} short={s.short} highlight={i === 0 || i === 3} />
+                </TiltCard>
               </Reveal>
             ))}
           </div>
@@ -506,28 +587,30 @@ function Projects() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={i * 80}>
-              <article className="paper-card paper-card-hover overflow-hidden">
-                <div className="flex items-start justify-between p-5 pb-3">
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink">{p.name}</h3>
-                    <div className="font-mono text-[11px] text-ink/55">{p.meta}</div>
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px] text-ink/70"
-                        >
-                          {t}
-                        </span>
-                      ))}
+              <TiltCard>
+                <article className="paper-card paper-card-hover overflow-hidden">
+                  <div className="flex items-start justify-between p-5 pb-3">
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-ink">{p.name}</h3>
+                      <div className="font-mono text-[11px] text-ink/55">{p.meta}</div>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        {p.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px] text-ink/70"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <span className="font-display text-2xl font-extrabold text-ink/80">{p.id}</span>
                   </div>
-                  <span className="font-display text-2xl font-extrabold text-ink/80">{p.id}</span>
-                </div>
-                <div className="overflow-hidden">
-                  <img src={p.img} alt={p.name} className="aspect-[4/3] w-full object-cover" />
-                </div>
-              </article>
+                  <div className="overflow-hidden">
+                    <img src={p.img} alt={p.name} className="aspect-[4/3] w-full object-cover" />
+                  </div>
+                </article>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
