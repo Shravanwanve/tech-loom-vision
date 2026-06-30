@@ -329,14 +329,19 @@ function About() {
               hands-on workshops — bridging hardware, firmware and real-world deployment.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-end gap-5">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {skills.map((s) => (
-                <div key={s.name} className="flex flex-col items-center">
-                  <div className="grid h-16 w-16 place-items-center rounded-full border border-ink/15 bg-paper shadow-sm">
-                    <SkillIcon name={s.name} />
+                <div key={s.name} className="rounded-2xl border border-ink/12 bg-paper p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="grid h-9 w-9 place-items-center rounded-lg bg-lime/60">
+                        <SkillIcon name={s.name} />
+                      </div>
+                      <div className="text-sm font-semibold text-ink">{s.name}</div>
+                    </div>
+                    <div className="font-mono text-xs font-bold text-ink/70">{s.level}%</div>
                   </div>
-                  <div className="mt-2 text-xs font-semibold text-ink">{s.name}</div>
-                  <div className="text-[11px] font-bold text-ink/70">{s.level}%</div>
+                  <ProgressBar value={s.level} className="mt-3" />
                 </div>
               ))}
             </div>
