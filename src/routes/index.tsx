@@ -150,6 +150,7 @@ function Portfolio() {
       <Hero />
       <Marquee />
       <About />
+      <Achievements />
       <Services />
       <Journey />
       <Projects />
@@ -161,8 +162,22 @@ function Portfolio() {
 
 /* ───────────────── HERO ───────────────── */
 function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="relative isolate overflow-hidden bg-cream pb-12 pt-28 sm:pt-32">
+      {/* Parallax PCB layer */}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ transform: `translateY(${scrollY * 0.25}px)` }}
+      >
+        <FloatingPCB />
+      </div>
       {/* Decorative squiggles */}
       <DecoSquiggle className="absolute right-6 top-16 hidden h-32 w-32 text-ink/70 sm:block" />
       <DecoSquiggle className="absolute left-2 top-1/2 hidden h-20 w-20 -translate-y-1/2 text-ink/60 md:block" />
