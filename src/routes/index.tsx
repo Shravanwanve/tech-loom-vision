@@ -63,27 +63,24 @@ const marqueeWords = [
   "IOT",
   "ROBOTICS",
   "VLSI",
-  "5G / RF",
-  "ANTENNA DESIGN",
-  "SIGNAL PROCESSING",
-  "TELECOM",
+  "ARDUINO",
   "ESP32",
   "PCB DESIGN",
+  "SENSORS",
 ];
 
 const skills = [
   { name: "Arduino", level: 95 },
   { name: "ESP32", level: 90 },
   { name: "IoT", level: 92 },
-  { name: "RF / Telecom", level: 80 },
+  { name: "PCB Design", level: 82 },
 ];
 
 const services = [
   { num: "01", title: "Embedded Systems", short: "Hardware" },
   { num: "02", title: "IoT Systems", short: "Connected" },
   { num: "03", title: "PCB Design", short: "Schematic" },
-  { num: "04", title: "Telecom & RF", short: "Signals" },
-  { num: "05", title: "Mentorship", short: "Workshops" },
+  { num: "04", title: "Mentorship", short: "Workshops" },
 ];
 
 
