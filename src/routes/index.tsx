@@ -38,7 +38,6 @@ import profileImg from "@/assets/profile-shravan.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
 import projectWater from "@/assets/project-water.jpg";
-import projectSoil from "@/assets/project-soil.jpg";
 import projectPlant from "@/assets/project-plant.jpg";
 
 
