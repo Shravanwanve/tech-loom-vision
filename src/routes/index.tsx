@@ -3,7 +3,6 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Cpu,
   Wifi,
-  Bot,
   CircuitBoard,
   Microscope,
   GraduationCap,
@@ -14,8 +13,6 @@ import {
   ArrowUpRight,
   Github,
   Calendar,
-  Zap,
-  Wrench,
   Code2,
   Users,
   Sparkles,
@@ -24,6 +21,14 @@ import {
   ChevronsDown,
   ChevronsUp,
   Asterisk,
+  RadioTower,
+  Satellite,
+  Radio,
+  Signal,
+  Antenna,
+  Droplets,
+  Sprout,
+  Waves,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Nav } from "@/components/portfolio/Nav";
@@ -36,6 +41,10 @@ import { Counter } from "@/components/portfolio/Counter";
 import profileImg from "@/assets/profile-shravan.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
+import projectWater from "@/assets/project-water.jpg";
+import projectSoil from "@/assets/project-soil.jpg";
+import projectPlant from "@/assets/project-plant.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,22 +62,34 @@ export const Route = createFileRoute("/")({
 
 /* ───────────────── DATA ───────────────── */
 
-const marqueeWords = ["EMBEDDED SYSTEMS", "IOT", "ROBOTICS", "VLSI", "ARDUINO", "ESP32", "PCB DESIGN", "AUTOMATION"];
+const marqueeWords = [
+  "EMBEDDED SYSTEMS",
+  "IOT",
+  "ROBOTICS",
+  "VLSI",
+  "5G / RF",
+  "ANTENNA DESIGN",
+  "SIGNAL PROCESSING",
+  "TELECOM",
+  "ESP32",
+  "PCB DESIGN",
+];
 
 const skills = [
   { name: "Arduino", level: 95 },
   { name: "ESP32", level: 90 },
   { name: "IoT", level: 92 },
-  { name: "PCB Design", level: 82 },
+  { name: "RF / Telecom", level: 80 },
 ];
 
 const services = [
-  { num: "01", title: "Embedded Dev", short: "Firmware" },
+  { num: "01", title: "Embedded Systems", short: "Hardware" },
   { num: "02", title: "IoT Systems", short: "Connected" },
   { num: "03", title: "PCB Design", short: "Schematic" },
-  { num: "04", title: "Robotics", short: "Autonomous" },
+  { num: "04", title: "Telecom & RF", short: "Signals" },
   { num: "05", title: "Mentorship", short: "Workshops" },
 ];
+
 
 const experiences = [
   {
@@ -119,19 +140,41 @@ const education = [
 const projects = [
   {
     id: "01",
-    name: "Fogger",
+    name: "IoT Fogger",
     meta: "(Duration: 14 Days)",
     tags: ["Arduino", "Sensors", "IoT"],
     img: projectFogger,
   },
   {
     id: "02",
-    name: "Energy Mon",
+    name: "Smart Energy Monitor",
     meta: "(Duration: 10 Days)",
     tags: ["ESP32", "Cloud", "Sensors"],
     img: projectEnergy,
   },
+  {
+    id: "03",
+    name: "Water Level Controller",
+    meta: "(Duration: 7 Days)",
+    tags: ["Arduino", "Ultrasonic", "Relay"],
+    img: projectWater,
+  },
+  {
+    id: "04",
+    name: "Soil Moisture Detector",
+    meta: "(Duration: 5 Days)",
+    tags: ["Sensor", "OLED", "Arduino"],
+    img: projectSoil,
+  },
+  {
+    id: "05",
+    name: "Automatic Plant Watering",
+    meta: "(Duration: 9 Days)",
+    tags: ["ESP32", "Pump", "IoT"],
+    img: projectPlant,
+  },
 ];
+
 
 /* ───────────────── PAGE ───────────────── */
 
