@@ -3,7 +3,6 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Cpu,
   Wifi,
-  Bot,
   CircuitBoard,
   Microscope,
   GraduationCap,
@@ -14,9 +13,7 @@ import {
   ArrowUpRight,
   Github,
   Calendar,
-  Zap,
-  Wrench,
-  Code2,
+  
   Users,
   Sparkles,
   Award,
@@ -24,6 +21,10 @@ import {
   ChevronsDown,
   ChevronsUp,
   Asterisk,
+  RadioTower,
+  Satellite,
+  Antenna,
+
 } from "lucide-react";
 import { toast } from "sonner";
 import { Nav } from "@/components/portfolio/Nav";
@@ -36,6 +37,10 @@ import { Counter } from "@/components/portfolio/Counter";
 import profileImg from "@/assets/profile-shravan.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
+import projectWater from "@/assets/project-water.jpg";
+import projectSoil from "@/assets/project-soil.jpg";
+import projectPlant from "@/assets/project-plant.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,22 +58,34 @@ export const Route = createFileRoute("/")({
 
 /* ───────────────── DATA ───────────────── */
 
-const marqueeWords = ["EMBEDDED SYSTEMS", "IOT", "ROBOTICS", "VLSI", "ARDUINO", "ESP32", "PCB DESIGN", "AUTOMATION"];
+const marqueeWords = [
+  "EMBEDDED SYSTEMS",
+  "IOT",
+  "ROBOTICS",
+  "VLSI",
+  "5G / RF",
+  "ANTENNA DESIGN",
+  "SIGNAL PROCESSING",
+  "TELECOM",
+  "ESP32",
+  "PCB DESIGN",
+];
 
 const skills = [
   { name: "Arduino", level: 95 },
   { name: "ESP32", level: 90 },
   { name: "IoT", level: 92 },
-  { name: "PCB Design", level: 82 },
+  { name: "RF / Telecom", level: 80 },
 ];
 
 const services = [
-  { num: "01", title: "Embedded Dev", short: "Firmware" },
+  { num: "01", title: "Embedded Systems", short: "Hardware" },
   { num: "02", title: "IoT Systems", short: "Connected" },
   { num: "03", title: "PCB Design", short: "Schematic" },
-  { num: "04", title: "Robotics", short: "Autonomous" },
+  { num: "04", title: "Telecom & RF", short: "Signals" },
   { num: "05", title: "Mentorship", short: "Workshops" },
 ];
+
 
 const experiences = [
   {
@@ -119,19 +136,41 @@ const education = [
 const projects = [
   {
     id: "01",
-    name: "Fogger",
+    name: "IoT Fogger",
     meta: "(Duration: 14 Days)",
     tags: ["Arduino", "Sensors", "IoT"],
     img: projectFogger,
   },
   {
     id: "02",
-    name: "Energy Mon",
+    name: "Smart Energy Monitor",
     meta: "(Duration: 10 Days)",
     tags: ["ESP32", "Cloud", "Sensors"],
     img: projectEnergy,
   },
+  {
+    id: "03",
+    name: "Water Level Controller",
+    meta: "(Duration: 7 Days)",
+    tags: ["Arduino", "Ultrasonic", "Relay"],
+    img: projectWater,
+  },
+  {
+    id: "04",
+    name: "Soil Moisture Detector",
+    meta: "(Duration: 5 Days)",
+    tags: ["Sensor", "OLED", "Arduino"],
+    img: projectSoil,
+  },
+  {
+    id: "05",
+    name: "Automatic Plant Watering",
+    meta: "(Duration: 9 Days)",
+    tags: ["ESP32", "Pump", "IoT"],
+    img: projectPlant,
+  },
 ];
+
 
 /* ───────────────── PAGE ───────────────── */
 
@@ -283,60 +322,54 @@ function Marquee() {
 /* ───────────────── ABOUT ───────────────── */
 function About() {
   return (
-    <section id="about" className="relative bg-cream py-20 sm:py-28">
+    <section id="about" className="relative overflow-hidden bg-cream py-20 sm:py-28">
       <Asterisk aria-hidden className="absolute right-10 top-16 hidden h-14 w-14 text-ink/70 lg:block" />
       <Asterisk aria-hidden className="absolute left-10 bottom-10 hidden h-14 w-14 text-ink/60 lg:block" />
+      {/* Telecom signal decorations */}
+      <RadioTower aria-hidden className="absolute right-6 bottom-24 hidden h-24 w-24 text-ink/10 lg:block" />
+      <Satellite aria-hidden className="absolute left-1/3 top-10 hidden h-10 w-10 text-lime lg:block" />
+      <SignalArcs className="absolute -left-6 top-1/2 hidden h-40 w-40 -translate-y-1/2 text-ink/15 md:block" />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <Reveal>
-          <div className="relative mx-auto w-full max-w-sm">
-            <div aria-hidden className="absolute inset-0 -z-10 translate-x-3 translate-y-3 rounded-3xl border-2 border-ink/15" />
-            <div className="overflow-hidden rounded-3xl border border-ink/15 bg-paper">
-              <img src={profileImg} alt="Shravan portrait" className="aspect-square w-full object-cover" />
-            </div>
-            {/* arrow accents */}
-            <div className="absolute -left-3 -top-3 grid h-8 w-8 place-items-center rounded-full bg-paper text-ink shadow">
-              <ArrowUpRight className="h-4 w-4" />
-            </div>
-            <div className="absolute -right-3 bottom-12 grid h-8 w-8 place-items-center rounded-full bg-paper text-ink shadow rotate-180">
-              <ArrowUpRight className="h-4 w-4" />
-            </div>
+          <div className="text-center">
+            <span className="chip">ABOUT ME</span>
+            <h2 className="mx-auto mt-4 max-w-3xl font-display text-3xl font-bold leading-tight text-ink sm:text-5xl">
+              I'm an{" "}
+              <span className="inline-flex items-center rounded-full bg-secondary px-3 py-0.5 align-middle">
+                <span className="text-2xl font-bold sm:text-4xl">ENTC</span>
+              </span>{" "}
+              Engineer building{" "}
+              <span className="inline-flex items-center gap-1 rounded-full bg-lime px-3 py-0.5 align-middle">
+                <Antenna className="h-5 w-5" />
+                <span>Smart Hardware</span>
+              </span>{" "}
+              &amp; Telecom Systems.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-ink/65 sm:text-base">
+              I design embedded systems, prototype IoT products, explore RF &amp; telecommunications,
+              and mentor diploma &amp; engineering students through hands-on workshops — bridging
+              circuits, signals and real-world deployment.
+            </p>
           </div>
         </Reveal>
 
         <Reveal delay={120}>
-          <div>
-            <span className="chip">ABOUT ME</span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
-              I'm an{" "}
-              <span className="inline-flex items-center rounded-full bg-secondary px-3 py-0.5 align-middle">
-                <span className="text-2xl font-bold sm:text-3xl">ENTC</span>
-              </span>{" "}
-              Engineer
-              <br />
-              Building Smart Hardware &amp; IoT.
-            </h2>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/65">
-              I design embedded systems, prototype IoT products, and mentor diploma &amp; engineering students through
-              hands-on workshops — bridging hardware, firmware and real-world deployment.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {skills.map((s) => (
-                <div key={s.name} className="rounded-2xl border border-ink/12 bg-paper p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="grid h-9 w-9 place-items-center rounded-lg bg-lime/60">
-                        <SkillIcon name={s.name} />
-                      </div>
-                      <div className="text-sm font-semibold text-ink">{s.name}</div>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {skills.map((s) => (
+              <div key={s.name} className="rounded-2xl border border-ink/12 bg-paper p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="grid h-9 w-9 place-items-center rounded-lg bg-lime/60">
+                      <SkillIcon name={s.name} />
                     </div>
-                    <div className="font-mono text-xs font-bold text-ink/70">{s.level}%</div>
+                    <div className="text-sm font-semibold text-ink">{s.name}</div>
                   </div>
-                  <ProgressBar value={s.level} className="mt-3" />
+                  <div className="font-mono text-xs font-bold text-ink/70">{s.level}%</div>
                 </div>
-              ))}
-            </div>
+                <ProgressBar value={s.level} className="mt-3" />
+              </div>
+            ))}
           </div>
         </Reveal>
       </div>
@@ -349,18 +382,31 @@ function SkillIcon({ name }: { name: string }) {
     Arduino: Cpu,
     ESP32: Wifi,
     IoT: CircuitBoard,
+    "RF / Telecom": RadioTower,
     "PCB Design": Microscope,
   };
   const Icon = map[name] ?? Sparkles;
   return <Icon className="h-5 w-5 text-ink" />;
 }
 
+function SignalArcs({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.2">
+      <circle cx="50" cy="50" r="10" />
+      <path d="M30 50 A20 20 0 0 1 70 50" />
+      <path d="M20 50 A30 30 0 0 1 80 50" />
+      <path d="M10 50 A40 40 0 0 1 90 50" />
+    </svg>
+  );
+}
+
+
 /* ───────────────── ACHIEVEMENTS ───────────────── */
 const stats = [
   { value: 10, suffix: "+", label: "Workshops Delivered", icon: Users },
   { value: 12, suffix: "+", label: "Projects Built", icon: CircuitBoard },
   { value: 3, suffix: "+", label: "Years in Electronics", icon: Cpu },
-  { value: 200, suffix: "+", label: "Students Mentored", icon: GraduationCap },
+  { value: 100, suffix: "+", label: "Students Mentored", icon: GraduationCap },
 ];
 
 function Achievements() {
@@ -416,7 +462,7 @@ function Services() {
             <h2 className="font-display text-2xl font-bold leading-snug sm:text-3xl">
               I build clean, reliable hardware &amp; embedded systems that fuse
               <br className="hidden md:block" />
-              electronics, firmware and IoT into real-world solutions.
+              electronics, embedded systems, RF &amp; IoT into real-world solutions.
             </h2>
           </Reveal>
         </div>
