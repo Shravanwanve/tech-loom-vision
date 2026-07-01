@@ -410,7 +410,7 @@ const stats = [
   { value: 10, suffix: "+", label: "Workshops Delivered", icon: Users },
   { value: 12, suffix: "+", label: "Projects Built", icon: CircuitBoard },
   { value: 3, suffix: "+", label: "Years in Electronics", icon: Cpu },
-  { value: 200, suffix: "+", label: "Students Mentored", icon: GraduationCap },
+  { value: 100, suffix: "+", label: "Students Mentored", icon: GraduationCap },
 ];
 
 function Achievements() {
@@ -466,7 +466,7 @@ function Services() {
             <h2 className="font-display text-2xl font-bold leading-snug sm:text-3xl">
               I build clean, reliable hardware &amp; embedded systems that fuse
               <br className="hidden md:block" />
-              electronics, firmware and IoT into real-world solutions.
+              electronics, embedded systems, RF &amp; IoT into real-world solutions.
             </h2>
           </Reveal>
         </div>
