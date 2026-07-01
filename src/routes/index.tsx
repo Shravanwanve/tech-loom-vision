@@ -333,12 +333,12 @@ function About() {
                 <Antenna className="h-5 w-5" />
                 <span>Smart Hardware</span>
               </span>{" "}
-              &amp; Telecom Systems.
+              &amp; IoT Systems.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-ink/65 sm:text-base">
-              I design embedded systems, prototype IoT products, explore RF &amp; telecommunications,
+              I design embedded systems, prototype IoT products, build robotics &amp; PCB projects,
               and mentor diploma &amp; engineering students through hands-on workshops — bridging
-              circuits, signals and real-world deployment.
+              circuits and real-world deployment.
             </p>
           </div>
         </Reveal>
