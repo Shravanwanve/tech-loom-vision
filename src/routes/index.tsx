@@ -13,7 +13,7 @@ import {
   ArrowUpRight,
   Github,
   Calendar,
-  Code2,
+  
   Users,
   Sparkles,
   Award,
