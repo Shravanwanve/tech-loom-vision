@@ -23,12 +23,8 @@ import {
   Asterisk,
   RadioTower,
   Satellite,
-  Radio,
-  Signal,
   Antenna,
-  Droplets,
-  Sprout,
-  Waves,
+
 } from "lucide-react";
 import { toast } from "sonner";
 import { Nav } from "@/components/portfolio/Nav";
