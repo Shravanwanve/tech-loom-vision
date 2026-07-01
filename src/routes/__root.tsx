@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "sonner";
 import { LoadingScreen } from "@/components/portfolio/LoadingScreen";
-import { MouseSpotlight } from "@/components/portfolio/MouseSpotlight";
 
 function NotFoundComponent() {
   return (
@@ -131,7 +130,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LoadingScreen />
-      <MouseSpotlight />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster theme="light" position="bottom-right" richColors />
