@@ -38,7 +38,6 @@ import profileImg from "@/assets/profile-shravan.jpg";
 import projectFogger from "@/assets/project-fogger.jpg";
 import projectEnergy from "@/assets/project-energy.jpg";
 import projectWater from "@/assets/project-water.jpg";
-import projectSoil from "@/assets/project-soil.jpg";
 import projectPlant from "@/assets/project-plant.jpg";
 
 
@@ -63,27 +62,24 @@ const marqueeWords = [
   "IOT",
   "ROBOTICS",
   "VLSI",
-  "5G / RF",
-  "ANTENNA DESIGN",
-  "SIGNAL PROCESSING",
-  "TELECOM",
+  "ARDUINO",
   "ESP32",
   "PCB DESIGN",
+  "SENSORS",
 ];
 
 const skills = [
   { name: "Arduino", level: 95 },
   { name: "ESP32", level: 90 },
   { name: "IoT", level: 92 },
-  { name: "RF / Telecom", level: 80 },
+  { name: "PCB Design", level: 82 },
 ];
 
 const services = [
   { num: "01", title: "Embedded Systems", short: "Hardware" },
   { num: "02", title: "IoT Systems", short: "Connected" },
   { num: "03", title: "PCB Design", short: "Schematic" },
-  { num: "04", title: "Telecom & RF", short: "Signals" },
-  { num: "05", title: "Mentorship", short: "Workshops" },
+  { num: "04", title: "Mentorship", short: "Workshops" },
 ];
 
 
@@ -157,16 +153,9 @@ const projects = [
   },
   {
     id: "04",
-    name: "Soil Moisture Detector",
-    meta: "(Duration: 5 Days)",
-    tags: ["Sensor", "OLED", "Arduino"],
-    img: projectSoil,
-  },
-  {
-    id: "05",
-    name: "Automatic Plant Watering",
-    meta: "(Duration: 9 Days)",
-    tags: ["ESP32", "Pump", "IoT"],
+    name: "Soil Moisture & Auto Plant Watering",
+    meta: "(Duration: 12 Days)",
+    tags: ["ESP32", "Sensor", "Pump", "IoT"],
     img: projectPlant,
   },
 ];
@@ -344,12 +333,12 @@ function About() {
                 <Antenna className="h-5 w-5" />
                 <span>Smart Hardware</span>
               </span>{" "}
-              &amp; Telecom Systems.
+              &amp; IoT Systems.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-ink/65 sm:text-base">
-              I design embedded systems, prototype IoT products, explore RF &amp; telecommunications,
+              I design embedded systems, prototype IoT products, build robotics &amp; PCB projects,
               and mentor diploma &amp; engineering students through hands-on workshops — bridging
-              circuits, signals and real-world deployment.
+              circuits and real-world deployment.
             </p>
           </div>
         </Reveal>
@@ -382,7 +371,6 @@ function SkillIcon({ name }: { name: string }) {
     Arduino: Cpu,
     ESP32: Wifi,
     IoT: CircuitBoard,
-    "RF / Telecom": RadioTower,
     "PCB Design": Microscope,
   };
   const Icon = map[name] ?? Sparkles;
