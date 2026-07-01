@@ -372,7 +372,6 @@ function SkillIcon({ name }: { name: string }) {
     ESP32: Wifi,
     IoT: CircuitBoard,
     "PCB Design": Microscope,
-    "PCB Design": Microscope,
   };
   const Icon = map[name] ?? Sparkles;
   return <Icon className="h-5 w-5 text-ink" />;
