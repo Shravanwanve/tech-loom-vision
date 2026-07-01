@@ -154,16 +154,9 @@ const projects = [
   },
   {
     id: "04",
-    name: "Soil Moisture Detector",
-    meta: "(Duration: 5 Days)",
-    tags: ["Sensor", "OLED", "Arduino"],
-    img: projectSoil,
-  },
-  {
-    id: "05",
-    name: "Automatic Plant Watering",
-    meta: "(Duration: 9 Days)",
-    tags: ["ESP32", "Pump", "IoT"],
+    name: "Soil Moisture & Auto Plant Watering",
+    meta: "(Duration: 12 Days)",
+    tags: ["ESP32", "Sensor", "Pump", "IoT"],
     img: projectPlant,
   },
 ];
