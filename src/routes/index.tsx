@@ -371,7 +371,7 @@ function SkillIcon({ name }: { name: string }) {
     Arduino: Cpu,
     ESP32: Wifi,
     IoT: CircuitBoard,
-    "RF / Telecom": RadioTower,
+    "PCB Design": Microscope,
     "PCB Design": Microscope,
   };
   const Icon = map[name] ?? Sparkles;
