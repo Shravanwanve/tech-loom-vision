@@ -31,6 +31,7 @@ import { Nav } from "@/components/portfolio/Nav";
 import { Reveal } from "@/components/portfolio/Reveal";
 import { TypingText } from "@/components/portfolio/TypingText";
 import { FloatingPCB } from "@/components/portfolio/FloatingPCB";
+import { PCBScene } from "@/components/portfolio/PCBScene";
 import { TiltCard } from "@/components/portfolio/TiltCard";
 import { ProgressBar } from "@/components/portfolio/ProgressBar";
 import { Counter } from "@/components/portfolio/Counter";
@@ -191,6 +192,8 @@ function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-cream pb-12 pt-28 sm:pt-32">
+      {/* Futuristic PCB layout + drone takeoff */}
+      <PCBScene className="-z-10" />
       {/* Parallax PCB layer */}
       <div
         className="absolute inset-0 -z-10"
@@ -450,7 +453,7 @@ function Services() {
             <h2 className="font-display text-2xl font-bold leading-snug sm:text-3xl">
               I build clean, reliable hardware &amp; embedded systems that fuse
               <br className="hidden md:block" />
-              electronics, embedded systems, RF &amp; IoT into real-world solutions.
+              electronics, embedded systems &amp; IoT into real-world solutions.
             </h2>
           </Reveal>
         </div>
@@ -595,10 +598,11 @@ function Journey() {
 /* ───────────────── PROJECTS ───────────────── */
 function Projects() {
   return (
-    <section id="projects" className="relative bg-lime-soft py-20 sm:py-28">
+    <section id="projects" className="relative overflow-hidden bg-lime-soft py-20 sm:py-28">
+      <PCBScene className="opacity-70" />
       <ChevronsUp className="absolute left-10 bottom-16 hidden h-10 w-10 text-ink lg:block" />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid items-start gap-6 lg:grid-cols-[auto_1fr]">
           <span className="chip-dark">PROJECTS</span>
           <Reveal>
