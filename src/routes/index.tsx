@@ -598,10 +598,11 @@ function Journey() {
 /* ───────────────── PROJECTS ───────────────── */
 function Projects() {
   return (
-    <section id="projects" className="relative bg-lime-soft py-20 sm:py-28">
+    <section id="projects" className="relative overflow-hidden bg-lime-soft py-20 sm:py-28">
+      <PCBScene className="opacity-70" />
       <ChevronsUp className="absolute left-10 bottom-16 hidden h-10 w-10 text-ink lg:block" />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid items-start gap-6 lg:grid-cols-[auto_1fr]">
           <span className="chip-dark">PROJECTS</span>
           <Reveal>
