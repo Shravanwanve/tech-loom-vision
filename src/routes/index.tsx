@@ -453,7 +453,7 @@ function Services() {
             <h2 className="font-display text-2xl font-bold leading-snug sm:text-3xl">
               I build clean, reliable hardware &amp; embedded systems that fuse
               <br className="hidden md:block" />
-              electronics, embedded systems, RF &amp; IoT into real-world solutions.
+              electronics, embedded systems &amp; IoT into real-world solutions.
             </h2>
           </Reveal>
         </div>
