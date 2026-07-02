@@ -192,6 +192,8 @@ function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden bg-cream pb-12 pt-28 sm:pt-32">
+      {/* Futuristic PCB layout + drone takeoff */}
+      <PCBScene className="-z-10" />
       {/* Parallax PCB layer */}
       <div
         className="absolute inset-0 -z-10"
