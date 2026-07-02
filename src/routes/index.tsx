@@ -31,6 +31,7 @@ import { Nav } from "@/components/portfolio/Nav";
 import { Reveal } from "@/components/portfolio/Reveal";
 import { TypingText } from "@/components/portfolio/TypingText";
 import { FloatingPCB } from "@/components/portfolio/FloatingPCB";
+import { PCBScene } from "@/components/portfolio/PCBScene";
 import { TiltCard } from "@/components/portfolio/TiltCard";
 import { ProgressBar } from "@/components/portfolio/ProgressBar";
 import { Counter } from "@/components/portfolio/Counter";
